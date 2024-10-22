@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Bingo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;  
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .bingo-card {   
+            display: inline-block;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            margin: 10px;   
+            padding: 10px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: calc(40% - 20px);
+            box-sizing: border-box;
+        }
+
+        .bingo-card h3 {
+            color: #4CAF50;
+            margin: 0 0 5px;
+            font-size: 24px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 5px;
+        }
+
+        .bingo-card div {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            border: 1px dashed #4CAF50;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #e7f3e7;
+        }
+
+        .bingo-card .free-space {
+            background-color: #ffeeba;
+            font-weight: normal;
+            color: #4CAF50;
+            position: relative;
+        }
+
+        .advertisement {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .advertisement img {
+            width: 50px;
+            height: auto;
+            margin: 0 5px;
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .bingo-card div {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            .advertisement img {
+                width: 40px;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+<h1>Generador de Cartones de Bingo</h1>
+<button onclick="generarBingos()">Generar 500 Cartones</button>
+<button onclick="generarPDF()">Descargar PDF</button>
+<div id="cartones" style="display: none;"></div>
+  
+<script>
+    function generarBingo() {
+        const numeros = Array.from({ length: 90 }, (_, i) => i + 1); // Números del 1 al 90
+        const seleccionados = [];
+        while (seleccionados.length < 24) {
+            const num = numeros.splice(Math.floor(Math.random() * numeros.length), 1)[0];
+            seleccionados.push(num);
+        }
+        seleccionados.splice(12, 0, " "); // Espacio libre
+        return seleccionados;
+    }
+
+    function generarBingosUnicos() {
+        const bingos = new Set();
+        while (bingos.size < 500) {
+            const tarjeta = generarBingo();
+            bingos.add(tarjeta.join(","));
+        }
+        return Array.from(bingos).map(b => b.split(","));
+    }
+
+    function mostrarBingos() {
+        const contenedor = document.getElementById('cartones');
+        contenedor.innerHTML = '';
+
+        const bingosUnicos = generarBingosUnicos();
+
+        // Crear contenedor para los cartones
+        const allContainers = document.createElement('div');
+
+        // Mostrar los cartones en filas de 2 en horizontal
+        for (let i = 0; i < bingosUnicos.length; i++) {
+            const cardDiv = crearBingoCard(bingosUnicos[i]);
+            allContainers.appendChild(cardDiv);
+
+            // Si hemos agregado 2 cartones, agregamos un salto de línea
+            if ((i + 1) % 2 === 0) {
+                const lineBreak = document.createElement('div');
+                lineBreak.style.clear = 'both'; // Forzar salto de línea
+                allContainers.appendChild(lineBreak);
+            }
+        }
+
+        contenedor.appendChild(allContainers);
+        contenedor.style.display = 'block'; // Mostrar los cartones
+    }
+
+    function crearBingoCard(bingo) {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'bingo-card';   
+        cardDiv.innerHTML = `<h3>ㅤCㅤㅤAㅤㅤBㅤㅤLㅤㅤEㅤ</h3>`; 
+        const gridDiv = document.createElement('div');
+        gridDiv.className = 'grid'; 
+
+        for (let i = 0; i < 5; i++) {    
+            for (let j = 0; j < 5; j++) {
+                const cell = document.createElement('div');
+                if (i === 2 && j === 2) {
+                    cell.className = 'free-space';
+                    cell.textContent = " "; // Espacio libre
+                } else {
+                    cell.textContent = bingo[i * 5 + j];
+                }
+                gridDiv.appendChild(cell);
+            }
+        }
+
+        const adDiv = document.createElement('div');
+        adDiv.className = 'advertisement';
+        adDiv.innerHTML = `
+            <img src="bingo/image/logo-KR-300x228.png" alt="Publicidad 1">
+            <img src="ruta/a/imagen2.jpg" alt="Publicidad 2">
+            <img src="ruta/a/imagen3.jpg" alt="Publicidad 3">
+        `;
+  
+        const footer = document.createElement('h3');    
+        footer.className = 'footer';
+        footer.innerHTML = `ㅤTㅤㅤAㅤㅤCㅤㅤNㅤㅤAㅤ`;
+
+        cardDiv.appendChild(gridDiv);
+        cardDiv.appendChild(adDiv);
+        cardDiv.appendChild(footer);
+
+        return cardDiv;
+    }
+
+    function generarPDF() {
+        const contenedor = document.getElementById('cartones');
+
+        if (contenedor.children.length === 0) {
+            alert("Por favor, genera primero los cartones de bingo.");
+            return;
+        }
+
+        const opciones = {
+            margin: 0.5,
+            filename: 'cartones_bingo.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+
+        // Esperar a que se carguen todas las imágenes
+        const images = contenedor.getElementsByTagName('img');
+        let imagesLoaded = 0;
+
+        if (images.length === 0) {
+            setTimeout(() => {
+                html2pdf()
+                    .from(contenedor)
+                    .set(opciones)
+                    .save();
+            }, 200);
+            return;
+        }
+
+        for (let i = 0; i < images.length; i++) {
+            if (images[i].complete) {
+                imagesLoaded++;
+            } else {
+                images[i].addEventListener('load', function() {
+                    imagesLoaded++;
+                    if (imagesLoaded === images.length) {   
+                        setTimeout(() => {
+                            html2pdf()
+                                .from(contenedor)
+                                .set(opciones)
+                                .save();
+                        }, 1000);
+                    }    
+                });
+            }   
+        }
+
+        if (imagesLoaded === images.length) {
+            setTimeout(() => {
+                html2pdf()
+                    .from(contenedor)
+                    .set(opciones)
+                    .save();
+            }, 1000);
+        }
+    }
+
+    function generarBingos() {
+        mostrarBingos();
+    }
+</script>
+
+</body>
+</html>
