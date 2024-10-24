@@ -34,5 +34,7 @@ $(function () {
         $(cells[index]).text(random);
         $(cells[index]).addClass('selected');
         index++;
+        // Actualizar el número mostrado en el span dentro de bigNumberDisplay
+        $('#displayNumber').text(random); 
     });
 });
