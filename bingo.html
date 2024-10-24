@@ -1,195 +1,119 @@
 <!DOCTYPE HTML>
 <html lang="es">
 <head>
-    <!-- basic -->
+    <!-- Basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- mobile metas -->
+    <!-- Mobile metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- site metas -->
+    <!-- Site metas -->
     <title>Cable Tacna</title>
     <meta name="keywords" content="">
     <meta name="description" content="Cable Tacna - Internet + Tv 100% Fibra Optica...">
     <meta name="author" content="Cristtofher Ccalash">
-    <!-- bootstrap css -->
+    <!-- Bootstrap css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- style css -->
-    <link rel="stylesheet" href="css/style.css">  
+    <!-- Style css -->
+    <link rel="stylesheet" href="css/style.css">
     <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
- 
- 
-    <link rel="stylesheet" href="css/owl.carousel.min.css">  
-    <!-- fevicon -->  
+    <!-- Fevicon -->
     <link rel="icon" href="image/fevicon.png" type="image/gif" />
     <link rel="icon" href="./image/logo_mini.png" sizes="32x32" />
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
-    <!-- Tweaks for older IEs -->
-    <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-       <![endif]-->     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-    
-       media="screen">
- </head>
+    <!-- Font Family -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+</head>
 
- <body class="main-layout">
+<body class="main-layout">
     <!-- Loader -->
-    <div class="loader_bg">  
-     <div class="loader">
-         <!-- <img class="loader-img" src="images/loading.gif" alt="Cargando..." /> -->
-     </div>
+    <div class="loader_bg">
+        <div class="loader">
+            <!-- Cargando... -->
+        </div>
     </div>
-    <div id="inicio" class="carousel slide" data-ride="carousel">
-        <header>
-            <div class="header">
-                <div class="container">
-                    <nav class="navbar navbar-expand-md navbar-dark">
-                        <a class="navbar-brand" href="#">
-                            <img src="image/logo.png" alt="Logo" class="logo-img" />
-                        </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="#inicio" onclick="hideNavbar()">INICIO</a>
-                                </li>
-                                <li class="nav-item">  
-                                    <a class="nav-link" href="#planes" onclick="hideNavbar()">GENERAR CARTONES</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <a class="navbar-brand" href="#">
-                            <img src="image/logopromo.png" alt="Logo" class="logo-img" />
-                        </a>
-                    </nav>
+
+    <header>
+        <div class="header">
+            <div class="container">
+                <nav class="navbar navbar-expand-md navbar-dark">
+                    <a class="navbar-brand" href="#">
+                        <img src="image/logo.png" alt="Logo" class="logo-img" />
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#inicio" onclick="hideNavbar()">INICIO</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Generador-Bingo.html" onclick="hideNavbar()">GENERAR CARTONES</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="navbar-brand" href="#">
+                        <img src="image/logopromo.png" alt="Logo" class="logo-img" />
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <div class="row mt-5">
+            <!-- Imagen lateral izquierda -->
+            <div class="col-md-2 text-center custom-left-image">
+                <img src="image/dr3.png" alt="Imagen izquierda" class="img-fluid">
+            </div>            
+
+            <!-- Tabla de bingo en el centro -->
+            <div class="col-md-8">
+                <div class="bigNumberDisplay text-center mb-4">
+                    <span style="font-size: 2rem;">0</span>
+                </div>
+                <div class="text-center mb-4">
+                    <input id="btnGenerate" type="button" value="Generate" class="btn btn-primary"/>
+                </div>
+                <div class="numbersTable">
+                    <table class="table table-bordered text-center">
+                        <tr>
+                            <td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td></td><td></td>
+                            <td id="middle"><img src="./image/logo_mini.png" alt="Logo" class="logo-img" /></td>
+                            <td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-        </header>
-    </div>
-    <!-- End loader -->  
-     
-    <div class="container">
-        <br><br><br><br><br>
-        <div class="bigNumberDisplay">
-            <span>0</span>
-        </div>
-        <div>
-            <input id="btnGenerate" type="button" value="Generate"/>
-        </div>
-        <br/>
-        <div class="numbersTable">
-            <table border="1">
-                <!-- Generar una tabla de 5x5, el centro será para el logo -->
-                <tr>
-                    <td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td></td><td></td>
-                    <!-- Espacio del medio con logo fijo -->
-                    <td><img src="./image/logo_mini.png" alt="Logo" class="logo-img" /></td>
-                    <td></td><td></td>
-                </tr>
-                <tr>
-                    <td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td></td><td></td><td></td><td></td><td></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    
 
-    <!-- Incluir jQuery y scripts.js -->
-    <script src="https://code.jquery.com/jquery-1.7.js"></script>
+            <!-- Imagen lateral derecha -->
+            <div class="col-md-2 text-center">
+                <img src="image/dr2.png" alt="Imagen derecha" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Incluir jQuery y los scripts en el orden correcto -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/scripts.js"></script>
-    <!-- Javascript files-->
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <script src="js/popper.min.js"></script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-   <script src="js/owl.carousel.min.js"></script>
-   <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-   <script src="js/custom.js"></script>
-   <script src="js/whatsapp.var.js"></script>
-
-   <script>
-      function toggleAccordion(element) {
-         const content = element.nextElementSibling;
-         if (content.style.display === "block") {
-            content.style.display = "none";
-         } else {
-            // Cerrar otros elementos
-            const allContents = document.querySelectorAll('.accordion-content');
-            allContents.forEach(item => item.style.display = "none");
-            content.style.display = "block";
-         }
-      }
-
-      $(document).ready(function () {  
-         $('.carousel').carousel({
-            interval: 3000 // Cambiar de imagen cada 3 segundos
-         });
-      });   
-   </script> 
-
-  <script>
-   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-       anchor.addEventListener('click', function(e) {
-           e.preventDefault();
-
-           document.querySelector(this.getAttribute('href')).scrollIntoView({  
-               behavior: 'smooth'
-           });  
-       });
-   });
-</script>
-<script>
-   document.getElementById('loadMore').addEventListener('click', function() {
-       const moreChannels = document.getElementById('more-channels');
-       const largeImage = document.getElementById('large-image');
-       if (moreChannels.style.display === "none") {
-           moreChannels.style.display = "block"; // Muestra los canales ocultos
-           largeImage.style.display = "block"; // Muestra la imagen grande    
-           this.textContent = "Ver menos";
-       } else {
-           moreChannels.style.display = "none"; // Oculta los canales ocultos
-           largeImage.style.display = "none"; // Oculta la imagen grande
-           this.textContent = "Ver más";
-       }
-   });      
-</script>
-<script>
-    function hideNavbar() {
-        const navbarCollapse = document.getElementById('navbarNav');
-        if (navbarCollapse.classList.contains('show')) {
-            navbarCollapse.classList.remove('show');
-        }
-    } 
-    </script>
-
- 
-  
-<script>
-    function showImage(src) {
-        document.getElementById('modalImage').src = src;
-        document.getElementById('imageModal').style.display = 'block';
-    }
-    
-    function closeImage() {
-        document.getElementById('imageModal').style.display = 'none';
-    }
-    </script>
+    <script src="js/bingo.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

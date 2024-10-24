@@ -48,7 +48,8 @@ body {
 }
 
 .container {
-     max-width: 1172px;
+     padding-left: 0; /* Elimina el padding izquierdo */
+     padding-right: 0; /* Elimina el padding derecho si es necesario */
 }
 
 a {
@@ -2265,55 +2266,35 @@ ul.img_icon li {
  }
  
  .numbersTable {
-     font-size: 1.6em;
+     margin: 20px 0;
  }
  
  table {
-     margin-left: auto;
-     margin-right: auto;
- }
- 
- table, tr, td {
-     border-collapse: collapse;
-     border: solid 1px #999;
+     width: 100%; /* Asegura que la tabla use el ancho completo del contenedor */
+     border-collapse: collapse; /* Elimina el espacio entre celdas */
  }
  
  td {
-     min-width: 100px;
-     color: #fff;
+     width: 20%; /* Establece un ancho fijo para las celdas */
+     height: 80px; /* Establece una altura para las celdas */
+     font-size: 2rem; /* Aumenta el tamaño de la fuente para los números */
+     vertical-align: middle; /* Alinea verticalmente el contenido de la celda */
  }
  
- td.selected {
-     color: #f00;
- }
- body {
-     text-align: center;
+ .selected {
+     background-color: rgb(0, 153, 255); /* Cambia el color de fondo de las celdas seleccionadas */
  }
  
- .bigNumberDisplay {
-     font-size: 6em;
+ .no-number {
+     background-color: transparent; /* Mantiene la celda sin número visible */
  }
  
- .numbersTable {
-     font-size: 1.6em;
+ .img-fluid {
+     max-width: 300%; /* Asegura que las imágenes sean responsivas */
+     height: auto; /* Mantiene la proporción de las imágenes */
  }
+ .custom-left-image {
+     padding-left: 0;  /* Quitar el padding izquierdo */
+     margin-left: -0;   /* Quitar el margen izquierdo */
+ } 
  
- table {
-     margin-left: auto;
-     margin-right: auto;
- }
- 
- table, tr, td {
-     border-collapse: collapse;
-     border: solid 1px #999;
- }
- 
- td {
-     min-width: 100px;
-     color: #fff;
- }
- 
- td.selected {
-     color: #f00;
- }
-  
